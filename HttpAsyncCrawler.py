@@ -19,7 +19,6 @@ server = "http://ws.audioscrobbler.com/2.0/"
 user = "rj"
 limit = 500
 maxusers = 50000000
-#maxlevel = 2
 marked = set(user)
 
 
@@ -50,7 +49,6 @@ def getFriends(user):
     data = getFriendsReq(user,1) 
     degree = int(re.search('total="(\d+)"', data).group(1))
     friends = re.findall("<name>(.*)</name>", data)
-    #print friends
     # In case we have to read more than one pages
     if degree > limit :
         pagesnum = degree/limit+1
@@ -98,7 +96,6 @@ def handler(res, d) :
         for x in range(2,pagesnum+1) :
             friends1 = getNames(normalize('NFKD',requests.get(prepReq(user[0],x)).text).encode('ascii','ignore').strip('[]'))
             friends += friends1
-    #print "User: "+user[0]+"\tFriends: "+str(len(friends))
     return friends
 
 
@@ -116,13 +113,10 @@ def bfs(root,f) :
         print strftime("%Y-%m-%d %H:%M:%S", gmtime())
         level = level + 1
         print "Start of level: " +str(level)
-        #help = len(tosearch)/1000
         marked.union(set(tosearch))
-        #helptosearch = tosearch
-        #for i in range(0,help+2) :
-            # Fix urls
+        # Fix urls
         urls = map(prepReq,tosearch,[1]*len(tosearch))
-            # Prepare requests
+        # Prepare requests
         reqs = (grequests.get(u) for u in urls)
         tosearch = []
         for req in grequests.map(reqs,prefetch=True, size=1000):
@@ -154,15 +148,3 @@ if __name__ == "__main__":
     print len(tosearch)
 
 
-"""Experiments
-
-
-10 nodes  12 seconds    120
-100 nodes 2m 54s        111
-1000 nodes 1h 23m       195
-
-
-In the 1000 nodes we notice a lot of 2nd loops which probably
-are due to nodes we already visited but we have to keep
-statistics for that.
-"""
