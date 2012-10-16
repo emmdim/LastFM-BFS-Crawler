@@ -1,4 +1,4 @@
-"""HttpAsyncRequests.py"""
+"""HttpAsyncCrawler.py"""
 
 __author__      = "E. Dimogerontakis, M. Orazow, H. Sang"
 __copyright__   = "http://creativecommons.org/licenses/by-sa/3.0/"
