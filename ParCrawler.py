@@ -15,7 +15,7 @@ server = "http://ws.audioscrobbler.com/2.0/"
 user = "rj"
 limit = 5000
 maxusers = 1000
-maxlevel = 5
+maxlevel = 3
 
 def getFriendsReq(user,page):
     userName = "%20".join(user.split(' '))
