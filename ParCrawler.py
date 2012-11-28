@@ -1,6 +1,6 @@
 """ParCrawler.py"""
 
-__author__      = "M. Orazow, E. Dimogerontakis, H. Sang"
+__author__      = "M. Orazow, E. Dimogerontakis, H. Shang"
 __copyright__   = "http://creativecommons.org/licenses/by-sa/3.0/"
 
 
